@@ -200,6 +200,8 @@ CAMLprim value libssh_ml_ssh_connect(value opts, value sess_val)
 
   check_result(ssh_options_set(this_sess, SSH_OPTIONS_USER, username),
   	       this_sess);
+  check_result(ssh_options_parse_config(this_sess, NULL),
+  	       this_sess);
 
   check_result(ssh_connect(this_sess), this_sess);
   verify_server(this_sess);
